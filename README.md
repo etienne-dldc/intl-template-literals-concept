@@ -3,7 +3,7 @@ Just an idea about how we could write intl components. Inspired by [styled-compo
 
 ## The problem with current Intl component
 
-Currently Intl components often look like this: 
+Currently Intl components often look like this:
 ```js
 <FormattedMessage
     id="welcome"
@@ -22,3 +22,5 @@ const messages = {
 The main problem here is that when you read you code, you don't really know what `id="welcome"` will render. If you want to know what it says, you have to find the message associated with it, which is quite anoying.
 
 ## Solution (maybe) : Template Literals
+
+![]()
