@@ -65,3 +65,7 @@ formated.message = (strings, ...interpolations) => {
   );
 };
 ```
+
+## Is it a good idea ?
+
+Hum... I don't know `¯\_(ツ)_/¯`.
