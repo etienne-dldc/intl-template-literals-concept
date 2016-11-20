@@ -23,4 +23,4 @@ The main problem here is that when you read you code, you don't really know what
 
 ## Solution (maybe) : Template Literals
 
-![]()
+<img alt="template-literals-all-the-things" src="./meme.jpg" height="200px" />
