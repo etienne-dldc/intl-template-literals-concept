@@ -5,10 +5,12 @@ Just an idea about how we could write intl components. Inspired by [styled-compo
 
 Currently Intl components often look like this:
 ```js
-<FormattedMessage
+<p>
+  <FormattedMessage
     id="welcome"
     values={{name: <b>{name}</b>, unreadCount}}
-/>
+  />
+</p>
 ```
 with somewhere else in you code the message:
 ```js
@@ -24,3 +26,42 @@ The main problem here is that when you read you code, you don't really know what
 ## Solution (maybe) : Template Literals
 
 <img alt="template-literals-all-the-things" src="./meme.jpg" height="200px" />
+
+What if we could do this:
+```js
+<p>
+  formated.message`hello ${ <b>{name}</b> } you have ${ unreadCount } messages`;
+</p>
+```
+And then you would declare your messages the following way:
+```js
+const messages = {
+  'hello [name] you have [unreadCount] messages': `Hello {name}, you have {unreadCount, number} {unreadCount, plural,
+    one {message}
+    other {messages}
+  }`
+};
+```
+
+## How does it works ?
+
+Well for now it's just a concept so it does not "works" but I know how it could works.  
+First, your messages would have to be transformed to extract the values names and replace the message's id :
+`hello [name] you have [unreadCount] messages` would become `hello [___] you have [___] messages` and an array to keep values names `['name', 'unreadCount']`.  
+Then the `formated.message` template whould look like this:
+```js
+formated.message = (strings, ...interpolations) => {
+  const id = strings.join('[___]');
+  const values = {};
+  const valueNames = getValuesNamesForId(id); // get ['name', 'unreadCount']
+  interpolations.forEach((value, index) => {
+    values[valueNames[index]] = value;
+  });
+  rturn (
+    <FormattedMessage
+      id={id}
+      values={values}
+    />
+  );
+};
+```
