@@ -12,7 +12,7 @@ Currently Intl components often look like this:
   />
 </p>
 ```
-with somewhere else in you code the message:
+with somewhere else in your code the message:
 ```js
 const messages = {
   'welcome': `Hello {name}, you have {unreadCount, number} {unreadCount, plural,
@@ -21,7 +21,7 @@ const messages = {
   }`
 };
 ```
-The main problem here is that when you read you code, you don't really know what `id="welcome"` will render. If you want to know what it says, you have to find the message associated with it, which is quite anoying.
+The main problem here is that when you read your code, you don't really know what `id="welcome"` will render. If you want to know what it says, you have to find the message associated with it, which is quite annoying.
 
 ## Solution (maybe) : Template Literals
 
@@ -43,12 +43,12 @@ const messages = {
 };
 ```
 
-## How does it works ?
+## How does it work ?
 
-Well for now it's just a concept so it does not "works" but I know how it could works.  
+Well, for now it's just a concept so it does not "work" but I know how it could (possibly) work.  
 First, your messages would have to be transformed to extract the values names and replace the message's id :
 `hello [name] you have [unreadCount] messages` would become `hello [___] you have [___] messages` and an array to keep values names `['name', 'unreadCount']`.  
-Then the `formated.message` template whould look like this:
+Then the `formated.message` template would look like this:
 ```js
 formated.message = (strings, ...interpolations) => {
   const id = strings.join('[___]');
@@ -57,7 +57,7 @@ formated.message = (strings, ...interpolations) => {
   interpolations.forEach((value, index) => {
     values[valueNames[index]] = value;
   });
-  rturn (
+  return (
     <FormattedMessage
       id={id}
       values={values}
